@@ -49,6 +49,9 @@ from pipecat.pipeline.task_observer import TaskObserver
 from pipecat.processors.frame_processor import FrameDirection, FrameProcessor, FrameProcessorSetup
 from pipecat.turns.bot.transcription_bot_turn_strategy import TranscriptionBotTurnStartStrategy
 from pipecat.turns.turn_start_strategies import TurnStartStrategies
+from pipecat.turns.user.transcription_user_turn_start_strategy import (
+    TranscriptionUserTurnStartStrategy,
+)
 from pipecat.turns.user.vad_user_turn_start_strategy import VADUserTurnStartStrategy
 from pipecat.utils.asyncio.task_manager import BaseTaskManager, TaskManager, TaskManagerParams
 from pipecat.utils.tracing.setup import is_tracing_available
@@ -291,7 +294,7 @@ class PipelineTask(BasePipelineTask):
         # Initialize default user and bot turn start strategies.
         if not self._params.turn_start_strategies:
             self._params.turn_start_strategies = TurnStartStrategies(
-                user=[VADUserTurnStartStrategy()],
+                user=[VADUserTurnStartStrategy(), TranscriptionUserTurnStartStrategy()],
                 bot=[TranscriptionBotTurnStartStrategy()],
             )
 
