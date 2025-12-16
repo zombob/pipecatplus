@@ -17,6 +17,9 @@ class MinWordsInterruptionStrategy(BaseInterruptionStrategy):
     This is an interruption strategy based on a minimum number of words said
     by the user. That is, the strategy will be true if the user has said at
     least that amount of words.
+
+    .. deprecated:: 0.0.98
+        This class is deprecated, use the new user and bot turn start strategies.
     """
 
     def __init__(self, *, min_words: int):
